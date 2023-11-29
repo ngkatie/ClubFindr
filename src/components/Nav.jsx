@@ -1,8 +1,12 @@
 import { Box } from "@mui/material";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import ClubFindrLogo from "../../public/logo.png"
+import { AuthContext } from "../context/AuthContext";
+import { doSignOut } from "../firebase/FirebaseFunctions";
 
 function Nav() {
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", width: "100%", height: "120px", color: "black", position: "fixed", top: 0, left: 0, zIndex: 1}}>
@@ -21,7 +25,11 @@ function Nav() {
             <Box sx={{ paddingRight: 5 }}>
                 <Link to="/profile" style={{ marginRight: 20 }}>Profile</Link>
                 <Link to="/explore" style={{ marginRight: 20 }}>Explore</Link>
-                <Link to="/login" style={{ marginRight: 50 }}>Login</Link>
+                {
+                  currentUser
+                  ? <Link to="/" onClick={doSignOut} style={{ marginRight: 50 }}>Logout</Link>
+                  : <Link to="/login" style={{ marginRight: 50 }}>Login</Link>
+                }
             </Box>
       </Box>
     </Box>

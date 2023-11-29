@@ -1,9 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
+import Nav from "./Nav";
 
 function Landing() {
     return (
         <div>
+            <Nav/>
             <Box sx={{display: "flex", alignItems: "center"}}>
                 <Box m="auto" sx={{width: "60%"}}>
                 <h1>ClubFindr</h1>
