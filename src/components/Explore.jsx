@@ -1,22 +1,33 @@
-import React from "react";
-import { Box, Card, CardMedia, CardContent, CardActions, IconButton, Typography, Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Card, CardMedia, CardContent, CardActions, IconButton, Typography, Button, Modal } from "@mui/material";
 import Nav from "./Nav";
-import wrongImage from '../../public/wrong.jpg'; // Replace with the actual path to your 'dislike' image
-import rightImage from '../../public/right.jpg'; // Replace with the actual path to your 'like' image
+import wrongImage from '../../public/wrong.jpg'; // Make sure this path is correct
+import rightImage from '../../public/right.jpg'; // Make sure this path is correct
 
-
-
-// Dummy data for clubs - you would replace this with actual data, likely fetched from an API
 const clubs = [
     {
         id: 1,
         name: "Student Government Association",
-        imageUrl: "../../public/sga.png", // Make sure this path correctly points to the image file
+        imageUrl: "../../public/sga.png", // Make sure this path is correct
+        about: "The mission of the Student Government Association of Stevens Institute of Technology (SGA) is to advocate for the undergraduate student body and serve as a means of communication between students and faculty, administration, and staff. The SGA is committed to enhancing the student experience and quality of life on campus. Charging itself with being a voice for the student body, the SGA is responsive to the issues, rights, and concerns of Stevens students. The SGA promotes the image of the student body it serves with integrity and honor and the image of the university; it provides students with leadership development and the promotion of their general welfare." 
     },
     // ... other clubs
 ];
 
 function Explore() {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedClub, setSelectedClub] = useState(null);
+
+    const handleOpenModal = (club) => {
+        setSelectedClub(club);
+        setModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setSelectedClub(null);
+    };
+
     return (
         <div>
             <Nav />
@@ -26,10 +37,10 @@ function Explore() {
                         <CardMedia
                             component="img"
                             sx={{
-                                width: 225, // Set width to 225px
-                                height: 225, // Set height to 225px
-                                objectFit: 'contain', // Image will be scaled correctly
-                                margin: 'auto' // This will center the image in the card
+                                width: 225,
+                                height: 225,
+                                objectFit: 'contain',
+                                margin: 'auto'
                             }}
                             image={club.imageUrl}
                             alt={club.name}
@@ -44,31 +55,29 @@ function Explore() {
                                 sx={{
                                     borderRadius: '50%',
                                     border: '3px solid',
+                                    borderColor: 'lightgrey',
                                     width: 50,
                                     height: 50,
-                                    padding: 0,
-                                    borderColor: 'lightgrey'
+                                    padding: 0
                                 }}
                             >
                                 <img src={wrongImage} alt="Dislike" style={{ width: '70%' }} />
                             </IconButton>
-                            <Button size="small" 
+                            <Button size="small" onClick={() => handleOpenModal(club)} 
                                 sx={{
-                                    border: '3px solid', // Sets the border width to 3px
-                                    borderColor: 'lightgrey', // Sets the border color to black
-                                    // Add more styles as needed
+                                    border: '3px solid',
+                                    borderColor: 'lightgrey',
                                 }}>
-                                    About
+                                About
                             </Button>
-
                             <IconButton 
                                 sx={{
                                     borderRadius: '50%',
                                     border: '3px solid',
+                                    borderColor: 'lightgrey',
                                     width: 50,
                                     height: 50,
-                                    padding: 0,
-                                    borderColor: 'lightgrey'
+                                    padding: 0
                                 }}
                             >
                                 <img src={rightImage} alt="Like" style={{ width: '72.5%' }} />
@@ -77,6 +86,34 @@ function Explore() {
                     </Card>
                 ))}
             </Box>
+
+            {/* Modal */}
+            <Modal
+                open={modalOpen}
+                onClose={handleCloseModal}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: 400,
+                    height: 400,
+                    bgcolor: 'background.paper',
+                    border: '2px solid #000',
+                    boxShadow: 24,
+                    p: 2,
+                }}>
+                    <Typography id="modal-title" variant="h6" component="h2">
+                        About {selectedClub?.name}
+                    </Typography>
+                    <Typography id="modal-description" sx={{ mt: 1 }}>
+                        {selectedClub?.about}
+                    </Typography>
+                </Box>
+            </Modal>
         </div>
     );
 }
