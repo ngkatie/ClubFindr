@@ -7,7 +7,7 @@ import {
     updatePassword,
     sendPasswordResetEmail,
     EmailAuthProvider,
-    reauthenticateWithCredential,
+    reauthenticateWithCredential
   } from 'firebase/auth';
   
   async function doCreateUser(email, password, displayName) {
@@ -39,7 +39,7 @@ import {
     const auth = getAuth();
     await signOut(auth);
   }
-  
+
   export {
     doCreateUser,
     doChangePassword,
