@@ -1,18 +1,17 @@
 import React from "react";
 import { Box, Card, CardMedia, CardContent, CardActions, IconButton, Typography, Button } from "@mui/material";
 import Nav from "./Nav";
-import wrongImage from '../../public/wrong.jpg'; // Replace with the actual path to your 'dislike' image
-import rightImage from '../../public/right.jpg'; // Replace with the actual path to your 'like' image
-
-
+import wrongImage from '../assets/wrong.jpg'; // Replace with the actual path to your 'dislike' image
+import rightImage from '../assets/right.jpg'; // Replace with the actual path to your 'like' image
+import sgaLogo from '../assets/sga.png';
 
 // Dummy data for clubs - you would replace this with actual data, likely fetched from an API
 const clubs = [
     {
         id: 1,
         name: "Student Government Association",
-        imageUrl: "../../public/sga.png", // Make sure this path correctly points to the image file
-    },
+        image: sgaLogo // Make sure this path correctly points to the image file
+    }
     // ... other clubs
 ];
 
@@ -31,7 +30,7 @@ function Explore() {
                                 objectFit: 'contain', // Image will be scaled correctly
                                 margin: 'auto' // This will center the image in the card
                             }}
-                            image={club.imageUrl}
+                            image={club.image}
                             alt={club.name}
                         />
                         <CardContent sx={{ width: '100%' }}>
