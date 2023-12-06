@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext'
 import './App.css'
 
 import Landing from './components/Landing'
+import Explore from './components/Explore'
 import Registration from './components/Registration'
 import Login from './components/Login'
 import Profile from './components/Profile'
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />}/>
         <Route path="/registration" element={<Registration />} />
+        <Route path="/explore" element={<Explore />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
