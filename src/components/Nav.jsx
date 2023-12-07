@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import ClubFindrLogo from "../../public/logo.png"
 import { AuthContext } from "../context/AuthContext";
 import { doSignOut } from "../firebase/FirebaseFunctions";
@@ -42,6 +42,7 @@ function Nav() {
                     height: 50,
                     paddingLeft: 5,
                 }}
+                onClick={<Navigate to="/"/>}
             />
             <Box sx={{ paddingRight: 5 }}>
                 <Link to="/profile" style={{ marginRight: 20, color: 'black' }}>Profile</Link>

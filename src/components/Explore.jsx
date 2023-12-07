@@ -1,16 +1,54 @@
 import React from "react";
-import { Box, Card, CardMedia, CardContent, CardActions, IconButton, Typography, Button } from "@mui/material";
+import { Grid, Card, CardMedia, CardContent, CardActions, IconButton, Typography, Button } from "@mui/material";
 import Nav from "./Nav";
+
+// Import assets
 import wrongImage from '../assets/wrong.jpg'; // Replace with the actual path to your 'dislike' image
 import rightImage from '../assets/right.jpg'; // Replace with the actual path to your 'like' image
 import sgaLogo from '../assets/sga.png';
+import aphiLogo from '../assets/aphi.png';
+import aicheLogo from "../assets/aiche.png";
+import blueprintLogo from "../assets/blueprint.png";
+import ecLogo from "../assets/entertainmentCommittee.jpeg";
+import gdscLogo from "../assets/gdsc.png";
+import stevensLogo from "../assets/sports.png";
 
 // Dummy data for clubs - you would replace this with actual data, likely fetched from an API
 const clubs = [
     {
         id: 1,
         name: "Student Government Association",
-        image: sgaLogo // Make sure this path correctly points to the image file
+        image: sgaLogo
+    },
+    {
+        id: 2,
+        name: "Alpha Phi",
+        image: aphiLogo
+    },
+    // {
+    //     id: 3,
+    //     name: "American Institute of Chemical Engineers",
+    //     image: aicheLogo
+    // },
+    {
+        id: 4,
+        name: "Blueprint",
+        image: blueprintLogo
+    },
+    {
+        id: 5,
+        name: "Entertainment Committee",
+        image: ecLogo
+    },
+    {
+        id: 6,
+        name: "Google Student Developer Club",
+        image: gdscLogo
+    },
+    {
+        id: 7,
+        name: "Men's Club Volleyball",
+        image: stevensLogo
     }
     // ... other clubs
 ];
@@ -19,9 +57,9 @@ function Explore() {
     return (
         <div>
             <Nav />
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mt: 4 }}>
+            <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center" style={{backgroundColor: '#f6f6f6'}}>
                 {clubs.map((club) => (
-                    <Card key={club.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: 345, mb: 2 }}>
+                    <Card key={club.id} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 345, height: 500, margin: 2, mt: 20, padding: 2}}>
                         <CardMedia
                             component="img"
                             sx={{
@@ -75,7 +113,7 @@ function Explore() {
                         </CardActions>
                     </Card>
                 ))}
-            </Box>
+            </Grid>
         </div>
     );
 }
